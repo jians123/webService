@@ -9,5 +9,8 @@
     "start": "node index.js"
   },
   "author": "SophieJiang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
