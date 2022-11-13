@@ -1,0 +1,25 @@
+<html> 
+    <head> 
+        <meta charset="UTF-8">
+        <title>Sophie's Web Service</title>
+    </head>
+
+    <body>
+        <h2>Universities whose name contains <%= contains %> in <%= country %></h2>
+        <p>Here is the sourced list</p>
+        <table border="1">
+            <tr>
+                <td>name</td>
+                <td>country</td>
+                <td>website</td>
+            </tr>
+            <% for(var i=0; i<list.length; i++){ %>
+                <tr>
+                    <td> <%= list[i].name %> </td>
+                    <td> <%= list[i].country %> </td>
+                    <td> <a href=<%= list[i].web_pages %>> <%= list[i].web_pages %> </a> </td>
+                </tr>
+            <% } %>
+        </table>   
+    </body>
+</html>

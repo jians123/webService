@@ -7,9 +7,9 @@ import ejs from 'ejs'
 // Create an instance of an express application 
 const app = express()
 app.use(express.json())
-// app.set("views","./")
-// app.engine("html",myejs.__express)
-// app.set("view engine","html")
+app.set("views","./")
+app.engine("html",ejs.__express)
+app.set("view engine","html")
 
 
 
@@ -25,12 +25,25 @@ app.get("/query", (req,res) => {
 
 
 // Set up a response for the root path of the application
-app.get('/', (req, res) => {
-  res.render("index.html")
+app.get('/', async (req, res) => {
+  const url = "http://universities.hipolabs.com/search?name="+req.query.contains+"&country="+req.query.country
+  // Make a request to another wbesite and wait for a response
+  const response = await fetch(url)
+
+  // Read the response
+  const body = await response.json()
+  //console.log(body)
+  
+  res.render("index.html",{
+    contains: req.query.contains,
+    country: req.query.country,
+    list: body
+  })
 })
 
 // Example of an application route that makes a request to another server
 app.get('/advice', async (req, res) => {
+  
   
 
   // Make a request to another wbesite and wait for a response
